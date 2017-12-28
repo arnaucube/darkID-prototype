@@ -1,16 +1,15 @@
 package main
 
 import (
+	"crypto/rsa"
 	"encoding/json"
 	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
 
-	"github.com/fatih/color"
+	"github.com/cryptoballot/rsablind"
 	"gopkg.in/mgo.v2/bson"
-
-	ownrsa "./ownrsa"
 )
 
 type User struct {
@@ -23,7 +22,7 @@ type User struct {
 func Index(w http.ResponseWriter, r *http.Request) {
 	//TODO return the public key, to allow others verifign signed strings by this server
 
-	jResp, err := json.Marshal(serverRSA.PubK)
+	jResp, err := json.Marshal("a")
 	if err != nil {
 		panic(err)
 	}
@@ -103,9 +102,11 @@ type Sign struct {
 }
 
 type AskBlindSign struct {
-	/*PubKString ownrsa.RSAPublicKeyString `json:"pubKstring"`
-	PubK       ownrsa.RSAPublicKey       `json:"pubK"`*/
-	M string `json:"m"`
+	M []byte `json:"m"`
+}
+type SignResponse struct {
+	Sig  []byte        `json:"sig"`
+	PubK rsa.PublicKey `json:"pubK"`
 }
 
 func BlindSign(w http.ResponseWriter, r *http.Request) {
@@ -116,38 +117,25 @@ func BlindSign(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	defer r.Body.Close()
-	color.Red(askBlindSign.M)
 	fmt.Println(askBlindSign)
+	blinded := askBlindSign.M
 
-	/*fmt.Println(askBlindSign)
-	askBlindSign.PubK, err = ownrsa.PubKStringToBigInt(askBlindSign.PubKString)
-	if err != nil {
-		fmt.Fprintln(w, "error")
-		return
-	}*/
+	/*privK := openPEMKey(keysDir + "/server_private.pem")
+	pubK := openPublicPEMKey(keysDir + "/server_public.pem")*/
+	sig, err := rsablind.BlindSign(serverKey, blinded)
+	check(err)
+	var signResponse SignResponse
+	signResponse.Sig = sig
+	signResponse.PubK = serverKey.PublicKey
 
-	//convert msg to []int
-	/*var m []int
-	mBytes := []byte(askBlindSign.M)
-	for _, byte := range mBytes {
-		m = append(m, int(byte))
-	}*/
-
-	m := ownrsa.StringToArrayInt(askBlindSign.M, "_")
-
-	sigma := ownrsa.BlindSign(m, serverRSA.PrivK) //here the privK will be the CA privK, not the m emmiter's one. The pubK is the user's one
-	fmt.Print("Sigma': ")
-	fmt.Println(sigma)
-	sigmaString := ownrsa.ArrayIntToString(sigma, "_")
-	askBlindSign.M = sigmaString
-
-	jResp, err := json.Marshal(askBlindSign)
+	jResp, err := json.Marshal(signResponse)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Fprintln(w, string(jResp))
 }
 
+//TODO verifysign will not be necessary in this server
 type PetitionVerifySign struct {
 	M       string `json:"m"`
 	MSigned string `json:"mSigned"`
@@ -180,7 +168,7 @@ func VerifySign(w http.ResponseWriter, r *http.Request) {
 		mSignedInts = append(mSignedInts, i)
 	}
 
-	verified := ownrsa.Verify(mOriginal, mSignedInts, serverRSA.PubK)
-
+	//verified := ownrsa.Verify(mOriginal, mSignedInts, serverRSA.PubK)
+	verified := false
 	fmt.Fprintln(w, verified)
 }

@@ -1,5 +1,4 @@
 {
     "port": "4100",
-    "keysDirectory": "keys",
     "server": "http://127.0.0.1:3130/"
 }

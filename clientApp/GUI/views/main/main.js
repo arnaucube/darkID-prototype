@@ -13,6 +13,7 @@ angular.module('app.main', ['ngRoute'])
 
         $rootScope.server = JSON.parse(localStorage.getItem("darkID_server"));
 
+        $scope.generatingID = false;
         $scope.ids = [];
         $http.get(clientapi + 'ids')
             .then(function(data) {
@@ -25,11 +26,13 @@ angular.module('app.main', ['ngRoute'])
             });
 
         $scope.newID = function() {
+            $scope.generatingID = true;
             $http.get(clientapi + 'newid')
                 .then(function(data) {
                     console.log('data success');
                     console.log(data);
                     $scope.ids = data.data;
+                    $scope.generatingID = false;
 
                 }, function(data) {
                     console.log('data error');
