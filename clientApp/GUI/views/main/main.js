@@ -39,8 +39,8 @@ angular.module('app.main', ['ngRoute'])
                 });
         };
 
-        $scope.blindAndSendToSign = function(pubK) {
-            $http.get(clientapi + 'blindandsendtosign/' + pubK)
+        $scope.blindAndSendToSign = function(id) {
+            $http.get(clientapi + 'blindandsendtosign/' + id)
                 .then(function(data) {
                     console.log('data success');
                     console.log(data);
@@ -50,8 +50,8 @@ angular.module('app.main', ['ngRoute'])
                     console.log('data error');
                 });
         };
-        $scope.verify = function(pubK) {
-            $http.get(clientapi + 'verify/' + pubK)
+        $scope.verify = function(id) {
+            $http.get(clientapi + 'verify/' + id)
                 .then(function(data) {
                     console.log('data success');
                     console.log(data);

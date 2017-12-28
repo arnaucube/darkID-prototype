@@ -40,9 +40,9 @@ func GetBlindAndSendToSign(w http.ResponseWriter, r *http.Request) {
 	idKey := vars["idKey"]
 	color.Green(idKey)
 
-	unblindedSig := BlindAndSendToSign(idKey)
+	keys := BlindAndSendToSign(idKey)
 
-	jResp, err := json.Marshal(unblindedSig)
+	jResp, err := json.Marshal(keys)
 	check(err)
 	fmt.Fprintln(w, string(jResp))
 }

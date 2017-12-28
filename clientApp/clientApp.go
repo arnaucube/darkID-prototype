@@ -12,6 +12,7 @@ import (
 
 	"github.com/cryptoballot/fdh"
 	"github.com/cryptoballot/rsablind"
+	"github.com/fatih/color"
 )
 
 func IDs() []Key {
@@ -51,18 +52,33 @@ type SignResponse struct {
 	PubK rsa.PublicKey `json:"pubK"`
 }
 
-func BlindAndSendToSign(keyID string) []byte {
+func BlindAndSendToSign(keyID string) []Key {
 	//get the key
 	key := getKeyByKeyID(keyID)
 	//privK := openPEMKey(key.PrivK)
-	pubK := openPublicPEMKey(key.PubK)
+	pubK, err := openPublicPEMKey(keysDir + "/" + key.PubK)
+	check(err)
 
-	//TODO pubK to string
-	m := []byte("pubK") //convert pubK to array of bytes
+	//pubK to string
+	m, err := ExportRsaPublicKeyAsPemStr(pubK)
+	check(err)
+	mB := []byte(m)
+
+	//get serverPubK
+	var serverPubK *rsa.PublicKey
+	res, err := http.Get(config.Server)
+	check(err)
+	decoder := json.NewDecoder(res.Body)
+	err = decoder.Decode(&serverPubK)
+	if err != nil {
+		panic(err)
+	}
+	defer res.Body.Close()
+
 	//blind the hashed message
 	// We do a SHA256 full-domain-hash expanded to 1536 bits (3/4 the key size)
-	hashed := fdh.Sum(crypto.SHA256, hashize, m)
-	blinded, unblinder, err := rsablind.Blind(&pubK, hashed)
+	hashed := fdh.Sum(crypto.SHA256, hashize, mB)
+	blinded, unblinder, err := rsablind.Blind(serverPubK, hashed)
 	if err != nil {
 		panic(err)
 	}
@@ -71,10 +87,10 @@ func BlindAndSendToSign(keyID string) []byte {
 	//send blinded to serverIDsigner
 	body := new(bytes.Buffer)
 	json.NewEncoder(body).Encode(askBlindSign)
-	res, err := http.Post(config.Server+"blindsign", "application/json", body)
+	res, err = http.Post(config.Server+"blindsign", "application/json", body)
 	check(err)
 	var signResponse SignResponse
-	decoder := json.NewDecoder(res.Body)
+	decoder = json.NewDecoder(res.Body)
 	err = decoder.Decode(&signResponse)
 	if err != nil {
 		panic(err)
@@ -82,13 +98,26 @@ func BlindAndSendToSign(keyID string) []byte {
 	defer res.Body.Close()
 
 	sig := signResponse.Sig
-	serverPubK := signResponse.PubK
+	//serverPubK := signResponse.PubK
 
 	//unblind the signedblind
-	unblindedSig := rsablind.Unblind(&serverPubK, sig, unblinder)
+	unblindedSig := rsablind.Unblind(serverPubK, sig, unblinder)
+	color.Green("unblindedSig")
 	fmt.Println(unblindedSig)
 
-	return unblindedSig
+	// Verify the original hashed message against the unblinded signature
+	if err := rsablind.VerifyBlindSignature(serverPubK, hashed, unblindedSig); err != nil {
+		fmt.Println(err)
+	} else {
+		color.Green("blind signature verified")
+		key.Verified = true
+	}
+	key.UnblindedSig = unblindedSig
+	key.Hashed = hashed
+	key.ServerVerifier = serverPubK
+	saveKey(key)
+	keys := readKeys()
+	return keys
 }
 
 func Verify(packPubK string) {

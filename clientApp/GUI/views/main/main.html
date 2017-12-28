@@ -25,7 +25,7 @@
                     <h4 class="card-title">
                         My IDs
                     </h4>
-                    <div class="row" style="height:200px;" ng-repeat="id in ids">
+                    <div class="row" style="height:160px;" ng-repeat="id in ids">
                         <div class="col-sm-6">
                             Public Key: {{id.pubK}}
                             <!--<br> Private Key: {{id.privK}}-->
@@ -40,11 +40,12 @@
                                 <span class="badge c_o_green300" ng-show="id.verified">Verified</span>
                             </div>
                             <div class="pull-right">
-                                <span class="badge c_o_orange300" ng-show="!id.pubKSigned">Not signed</span>
-                                <span class="badge c_o_green300" ng-show="id.pubKSigned">Signed</span>
+                                <span class="badge c_o_orange300" ng-show="!id.unblindedsig">Not signed</span>
+                                <span class="badge c_o_blue300" ng-show="id.unblindedsig">Signed</span>
                             </div>
-                            <div ng-click="blindAndSendToSign(id.pubK)" ng-show="!id.pubKSigned" class="btn btn-sm btn-raised c_o_cyan300 pull-right">Send to serverIDsigner</div>
-                            <div ng-click="verify(id.pubK)"  ng-show="!id.verified"class="btn btn-sm btn-raised c_o_deepPurple300 pull-right">Verify</div>
+                            <br><br>
+                            <div ng-click="blindAndSendToSign(id.id)" ng-show="!id.unblindedsig" class="btn btn-sm btn-raised c_o_cyan300 pull-right">Send to serverIDsigner</div>
+                            <!--<div ng-click="verify(id.id)"  ng-show="!id.verified"class="btn btn-sm btn-raised c_o_deepPurple300 pull-right">Verify</div>-->
                         </div>
                     </div>
                 </div>

@@ -20,9 +20,8 @@ type User struct {
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	//TODO return the public key, to allow others verifign signed strings by this server
-
-	jResp, err := json.Marshal("a")
+	// return server public key, to allow others verifign signed strings by this server
+	jResp, err := json.Marshal(serverKey.PublicKey)
 	if err != nil {
 		panic(err)
 	}
