@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-cloak>
+
+<head>
+    <meta charset="utf-8">
+    <title>darkID</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="img/darkID-logo-black.png">
+
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/own.css">
+    <link rel="stylesheet" href="css/bootstrapMaterial-dark-overwrite.css">
+
+    <link href="bower_components/cssMaterialColors/colors.css" rel="stylesheet">
+</head>
+
+<body ng-app="webapp">
+    <div ng-include="'views/navbar.html'"></div>
+    <br><br><br><br><br>
+    <div ng-view></div>
+
+
+
+
+
+<!-- ELECTRON
+Insert this line above script imports
+Works for both browser and electron with the same code -->
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <!-- Angular js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- Bootstrap Material Design -->
+    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/ripples.css">
+
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-bootstrap-material/dist/angular-bootstrap-material.js"></script>
+
+    <!-- jQuery for Bootstrap -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- toastr -->
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <script type="text/javascript" src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+
+    <!-- app's js -->
+    <script src="app.js"></script>
+    <script src="views/navbar.js"></script>
+    <script src="views/main/main.js"></script>
+    <script src="views/signup/signup.js"></script>
+    <script src="views/login/login.js"></script>
+
+
+<!-- ELECTRON
+Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
+
+</body>
+
+</html>

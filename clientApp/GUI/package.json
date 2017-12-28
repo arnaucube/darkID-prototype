@@ -1,0 +1,15 @@
+{
+  "name": "darkID-clientApp",
+  "version": "1.0.0",
+  "description": "frontend desktop app for darkID",
+  "main": "main.js",
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^1.2.0"
+  },
+  "license": "MIT"
+}

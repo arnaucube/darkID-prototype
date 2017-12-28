@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div ng-click="" class="btn btn-raised btn-block c_o_green300">Use ID</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div ng-click="newID()" class="btn btn-raised btn-block c_o_pink300">Create new ID</div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        My IDs
+                    </h4>
+                    <div class="row" style="height:200px;" ng-repeat="id in ids">
+                        <div class="col-sm-6">
+                            Public Key: {{id.pubK}}
+                            <!--<br> Private Key: {{id.privK}}-->
+                            <br> Date of creation: {{id.date}}
+                            <!--<br> {{id.pubKSigned}}-->
+                            <br>
+                            <br><br>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="pull-right">
+                                <span class="badge c_o_red300" ng-show="!id.verified">Not verified</span>
+                                <span class="badge c_o_green300" ng-show="id.verified">Verified</span>
+                            </div>
+                            <div class="pull-right">
+                                <span class="badge c_o_orange300" ng-show="!id.pubKSigned">Not signed</span>
+                                <span class="badge c_o_green300" ng-show="id.pubKSigned">Signed</span>
+                            </div>
+                            <div ng-click="blindAndSendToSign(id.pubK)" ng-show="!id.pubKSigned" class="btn btn-sm btn-raised c_o_cyan300 pull-right">Send to serverIDsigner</div>
+                            <div ng-click="verify(id.pubK)"  ng-show="!id.verified"class="btn btn-sm btn-raised c_o_deepPurple300 pull-right">Verify</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+
+    </div>
+</div>
