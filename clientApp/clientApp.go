@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os/exec"
 	"time"
 
 	"github.com/cryptoballot/fdh"
@@ -123,4 +124,19 @@ func BlindAndSendToSign(keyID string) []Key {
 func Verify(packPubK string) {
 
 	return
+}
+
+func Delete(keyID string) []Key {
+	originalKeys := readKeys()
+	//remove key .pem files
+	key := getKeyByKeyID(keyID)
+	_, err := exec.Command("rm", keysDir+"/"+key.PrivK).CombinedOutput()
+	check(err)
+	_, err = exec.Command("rm", keysDir+"/"+key.PubK).CombinedOutput()
+	check(err)
+
+	//remove key from keys.json
+	keys := removeKey(keyID, originalKeys)
+	saveKeys(keys)
+	return keys
 }

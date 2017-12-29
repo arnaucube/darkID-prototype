@@ -30,13 +30,19 @@ var routes = Routes{
 	Route{
 		"GetBlindAndSendToSign",
 		"GET",
-		"/blindandsendtosign/{idKey}",
+		"/blindandsendtosign/{keyid}",
 		GetBlindAndSendToSign,
 	},
 	Route{
 		"GetVerify",
 		"GET",
-		"/verify/{idKey}",
+		"/verify/{keyid}",
 		GetVerify,
+	},
+	Route{
+		"GetDelete",
+		"GET",
+		"/delete/{keyid}",
+		GetDelete,
 	},
 }

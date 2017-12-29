@@ -6,46 +6,40 @@
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div ng-click="" class="btn btn-raised btn-block c_o_green300">Use ID</div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div ng-click="newID()" class="btn btn-raised btn-block c_o_pink300">Create new ID</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="progress progress-striped" ng-show="generatingID">
-                          <div class="progress-bar progress-bar-success active" style="width: 100%"></div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="card-body">
+                    <div ng-click="newID()" class="btn btn-raised pull-right c_o_pink300">Create new ID</div>
                     <h4 class="card-title">
                         My IDs
                     </h4>
-                    <div class="row" style="height:160px;" ng-repeat="id in ids">
-                        <div class="col-sm-6">
-                            Public Key: {{id.pubK}}
-                            <!--<br> Private Key: {{id.privK}}-->
-                            <br> Date of creation: {{id.date}}
-                            <!--<br> {{id.pubKSigned}}-->
-                            <br>
-                            <br><br>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="pull-right">
+                    <div class="card" ng-repeat="id in ids" style="overflow-x:hidden;">
+                        <div class="card-body">
+                            <h4>{{id.id}}</h4>
+                                <span class="pull-right">{{id.date | date: "dd.MM.y, HH:mm:ss"}}h</span>
+
                                 <span class="badge c_o_red300" ng-show="!id.verified">Not verified</span>
                                 <span class="badge c_o_green300" ng-show="id.verified">Verified</span>
-                            </div>
-                            <div class="pull-right">
                                 <span class="badge c_o_orange300" ng-show="!id.unblindedsig">Not signed</span>
                                 <span class="badge c_o_blue300" ng-show="id.unblindedsig">Signed</span>
+                                <span class="badge c_o_deepPurple300" ng-show="id.blockchainref">in Blockchain</span>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div ng-click="clientApp('blindandsendtosign', id.id)" ng-show="!id.unblindedsig" class="btn btn-raised btn-sm c_o_cyan300">Send to serverIDsigner</div>
+                                    <div ng-click="clientApp('addtoblockchain', id.id)" ng-show="id.unblindedsig && !id.blockchainref" class="btn btn-raised btn-sm c_o_deepPurple300">Add to blockchain</div>
+                                    <a ng-href="#!/id/{{id.id}}" ng-show="id.blockchainref" class="btn btn-raised btn-sm c_o_green300">Use ID</a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <!--<div ng-click="verify(id.id)"  ng-show="!id.verified"class="btn btn-sm btn-raised c_o_deepPurple300 pull-right">Verify</div>-->
+
+                                    <div ng-click="clientApp('delete', id.id)" class="btn btn-raised pull-right btn-sm c_o_red300">
+                                        <i title="Delete" class="fa fa-trash fa-1x"></i>
+                                    </div>
+                                </div>
                             </div>
-                            <br><br>
-                            <div ng-click="blindAndSendToSign(id.id)" ng-show="!id.unblindedsig" class="btn btn-sm btn-raised c_o_cyan300 pull-right">Send to serverIDsigner</div>
-                            <!--<div ng-click="verify(id.id)"  ng-show="!id.verified"class="btn btn-sm btn-raised c_o_deepPurple300 pull-right">Verify</div>-->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="progress progress-striped" ng-show="generatingID">
+                          <div class="progress-bar progress-bar-success active" style="width: 100%"></div>
                         </div>
                     </div>
                 </div>

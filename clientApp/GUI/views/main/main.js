@@ -61,4 +61,15 @@ angular.module('app.main', ['ngRoute'])
                     console.log('data error');
                 });
         };
+        $scope.clientApp = function(route, param) {
+            $http.get(clientapi + route + '/' + param)
+                .then(function(data) {
+                    console.log('data success');
+                    console.log(data);
+                    $scope.ids = data.data;
+
+                }, function(data) {
+                    console.log('data error');
+                });
+        };
     });

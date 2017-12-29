@@ -24,6 +24,8 @@ type Key struct {
 	UnblindedSig   []byte         `json:"unblindedsig"`
 	Verified       bool           `json:"verified"`
 	ServerVerifier *rsa.PublicKey `json:"serververifier"`
+	SignerID       string         `json:"signerid"`
+	BlockchainRef  string         `json:"blockchainref"`
 }
 
 func ExportRsaPrivateKeyAsPemStr(privkey *rsa.PrivateKey) string {
@@ -150,6 +152,14 @@ func getKeyByKeyID(keyID string) (k Key) {
 		}
 	}
 	return k
+}
+func removeKey(keyID string, originalKeys []Key) (keys []Key) {
+	for _, key := range originalKeys {
+		if key.ID != keyID {
+			keys = append(keys, key)
+		}
+	}
+	return
 }
 
 /*

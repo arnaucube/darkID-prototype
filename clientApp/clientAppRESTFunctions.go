@@ -37,7 +37,7 @@ func GetNewID(w http.ResponseWriter, r *http.Request) {
 }
 func GetBlindAndSendToSign(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	idKey := vars["idKey"]
+	idKey := vars["keyid"]
 	color.Green(idKey)
 
 	keys := BlindAndSendToSign(idKey)
@@ -54,6 +54,17 @@ func GetVerify(w http.ResponseWriter, r *http.Request) {
 
 	//keys := Verify(packPubK)
 	keys := "a"
+
+	jResp, err := json.Marshal(keys)
+	check(err)
+	fmt.Fprintln(w, string(jResp))
+}
+
+func GetDelete(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	keyID := vars["keyid"]
+
+	keys := Delete(keyID)
 
 	jResp, err := json.Marshal(keys)
 	check(err)
