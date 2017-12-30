@@ -22,6 +22,12 @@ var routes = Routes{
 		GetIDs,
 	},
 	Route{
+		"GetID",
+		"GET",
+		"/id/{keyid}",
+		GetID,
+	},
+	Route{
 		"GetNewID",
 		"GET",
 		"/newid",
@@ -44,5 +50,17 @@ var routes = Routes{
 		"GET",
 		"/delete/{keyid}",
 		GetDelete,
+	},
+	Route{
+		"PostEncrypt",
+		"POST",
+		"/encrypt/{keyid}",
+		PostEncrypt,
+	},
+	Route{
+		"PostDecrypt",
+		"POST",
+		"/decrypt/{keyid}",
+		PostDecrypt,
 	},
 }

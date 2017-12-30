@@ -1,6 +1,6 @@
 'use strict';
 
-//var urlapi = "http://127.0.0.1:3130/";
+
 var clientapi = "http://127.0.0.1:4100/";
 
 // Declare app level module which depends on views, and components
@@ -13,7 +13,8 @@ angular.module('app', [
     'app.navbar',
     'app.main',
     'app.signup',
-    'app.login'
+    'app.login',
+    'app.id'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');

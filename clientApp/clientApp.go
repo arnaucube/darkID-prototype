@@ -5,6 +5,7 @@ import (
 	"crypto"
 	"crypto/rand"
 	"crypto/rsa"
+	"crypto/sha1"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -139,4 +140,26 @@ func Delete(keyID string) []Key {
 	keys := removeKey(keyID, originalKeys)
 	saveKeys(keys)
 	return keys
+}
+
+func Encrypt(keyID string, encryptData EncryptData) EncryptData {
+	key := getKeyByKeyID(keyID)
+	pubK, err := openPublicPEMKey(keysDir + "/" + key.PubK)
+	check(err)
+	out, err := rsa.EncryptOAEP(sha1.New(), rand.Reader, &pubK, []byte(encryptData.M), []byte("orders"))
+	check(err)
+	fmt.Println(string(out))
+	encryptData.C = out
+	return encryptData
+}
+
+func Decrypt(keyID string, encryptData EncryptData) EncryptData {
+	key := getKeyByKeyID(keyID)
+	privK, err := openPEMKey(keysDir + "/" + key.PrivK)
+	check(err)
+	out, err := rsa.DecryptOAEP(sha1.New(), rand.Reader, privK, []byte(encryptData.C), []byte("orders"))
+	check(err)
+	fmt.Println(string(out))
+	encryptData.M = string(out)
+	return encryptData
 }

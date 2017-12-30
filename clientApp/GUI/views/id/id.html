@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4>ID: {{id.id}}</h4>
+
+                    <span class="pull-right">{{id.date | date: "dd.MM.y, HH:mm:ss"}}h</span>
+
+                    <span class="badge c_o_red300" ng-show="!id.verified">Not verified</span>
+                    <span class="badge c_o_green300" ng-show="id.verified">Verified</span>
+                    <span class="badge c_o_orange300" ng-show="!id.unblindedsig">Not signed</span>
+                    <span class="badge c_o_blue300" ng-show="id.unblindedsig">Signed</span>
+                    <span class="badge c_o_deepPurple300" ng-show="id.blockchainref">in Blockchain</span>
+                    <div class="row">
+                        <textarea style="color:#000000;width:100%;" rows="4"
+                            ng-model="decryptData.c"
+                            placeholder="Enter here the proof-of-decrypt..."
+                        ></textarea>
+                    </div>
+                    {{decryptData.m}}
+                    <div ng-click="decrypt()" ng-show="id.blockchainref" class="btn btn-raised pull-right c_o_pink300">
+                        Proof of decrypt
+                    </div>
+
+                </div>
+            </div>
+            <br><br><br><br><br>
+            <hr>
+            <div class="row">
+                <h5>Testing only:</h5>
+                <div class="row">
+                    <textarea style="color:#000000;width:100%;" rows="4"
+                        ng-model="encryptData.m"
+                        placeholder="Enter here the unencrypted..."
+                    ></textarea>
+                </div>
+                <textarea style="backgroud:grey;color:#000000;width:100%;" rows="4"
+                    ng-model="encryptData.c"
+                    placeholder="Encrypted data..."
+                ></textarea>
+                <div ng-click="encrypt()" ng-show="id.blockchainref" class="btn btn-raised pull-right c_o_orange300">
+                    Encrypt
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+
+    </div>
+</div>
