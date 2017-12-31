@@ -1,14 +1,32 @@
+/*@font-face {
+    font-family: Elianto;
+    src: url('../fonts/Elianto/Elianto-Regular.otf');
+}*/
+
 body {
     /*background: #15191e!important;*/
     background: #000000!important;
     color: #ffffff!important;
+    font-family: 'Open Sans', sans-serif!important;
 }
+
 .card {
-    /*background: #1f262d!important;*/
+    background: #1f262d!important;
     /*background: #15191e!important;
     color: #ffffff!important;*/
     /*border: 1px solid #ffffff!important;*/
-
     background: #000000!important;
     color: #ffffff!important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    /*font-family: 'Raleway', sans-serif!important;*/
+    font-family: 'Overpass Mono', monospace!important;
+}
+
+.navbar-brand, .card-title {
+    font-family: 'Overpass Mono', monospace!important;
+}
+.btn {
+    font-family: 'Overpass Mono', monospace!important;
 }

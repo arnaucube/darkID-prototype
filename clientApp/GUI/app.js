@@ -10,11 +10,13 @@ angular.module('app', [
     'angularBootstrapMaterial',
     'ui.bootstrap',
     'toastr',
+    'chart.js',
     'app.navbar',
     'app.main',
     'app.signup',
     'app.login',
-    'app.id'
+    'app.id',
+    'app.stats'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');

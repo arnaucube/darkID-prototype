@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-8">
+            <h4 class="card-title">
+                Stats
+            </h4>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <canvas id="line" class="chart chart-line" chart-data="chart1.data"
+                        chart-labels="chart1.labels"
+                        chart-colors="chart1.colours">
+                        </canvas>
+                    </div>
+                    <div class="row">
+                        <canvas id="line" class="chart chart-pie" chart-data="chart2.data"
+                        chart-labels="chart2.labels"
+                        chart-colors="chart2.colours">
+                        </canvas>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="progress progress-striped" ng-show="generatingID">
+                    <div class="progress-bar progress-bar-success active" style="width: 100%"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+
+    </div>
+</div>

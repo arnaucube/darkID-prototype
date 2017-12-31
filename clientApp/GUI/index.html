@@ -8,6 +8,12 @@
 
     <link rel="icon" type="image/png" href="img/darkID-logo-black.png">
 
+    <!-- Fonts -->
+    <!-- in development I use googlefonts to go faster, but for the final app, I'll use downloaded fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Overpass+Mono:700|Raleway:700" rel="stylesheet">
+
+
+
     <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="css/own.css">
@@ -18,7 +24,7 @@
 
 <body ng-app="webapp">
     <div ng-include="'views/navbar.html'"></div>
-    <br><br><br>
+    <br><br><br><br>
     <div ng-view></div>
 
 
@@ -48,6 +54,10 @@ Works for both browser and electron with the same code -->
     <!-- jQuery for Bootstrap -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
+    <!-- Angular Chart -->
+    <script src="bower_components/chart.js/dist/Chart.min.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+
     <!-- toastr -->
     <link rel="stylesheet" type="text/css" href="bower_components/angular-toastr/dist/angular-toastr.css" />
     <script type="text/javascript" src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
@@ -59,6 +69,7 @@ Works for both browser and electron with the same code -->
     <script src="views/signup/signup.js"></script>
     <script src="views/login/login.js"></script>
     <script src="views/id/id.js"></script>
+    <script src="views/stats/stats.js"></script>
 
 
 <!-- ELECTRON

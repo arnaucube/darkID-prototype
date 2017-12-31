@@ -13,6 +13,7 @@
     "angular-bootstrap": "^2.5.0",
     "components-font-awesome": "^4.7.0",
     "angular-toastr": "^2.1.1",
-    "cssMaterialColors": "*"
+    "cssMaterialColors": "*",
+    "angular-chart.js": "^1.1.1"
   }
 }
