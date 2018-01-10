@@ -1,7 +1,7 @@
-/*@font-face {
+@font-face {
     font-family: Elianto;
-    src: url('../fonts/Elianto/Elianto-Regular.otf');
-}*/
+    src: url('../fonts/Elianto/Elianto.otf');
+}
 
 body {
     /*background: #15191e!important;*/
@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Overpass Mono', monospace!important;
 }
 
-.navbar-brand, .card-title {
+.navbar-brand, .card-title, .navbar-nav {
     font-family: 'Overpass Mono', monospace!important;
 }
 .btn {
