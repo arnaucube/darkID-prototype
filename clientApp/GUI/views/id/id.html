@@ -21,29 +21,30 @@
                             placeholder="Enter here the proof-of-decrypt..."
                         ></textarea>
                     </div>
+                    <h5 ng-show="decryptData.m">PoD:</h5>
                     {{decryptData.m}}
                     <div ng-click="decrypt()" ng-show="id.blockchainref" class="btn btn-raised pull-right c_o_pink300">
                         Proof of decrypt
                     </div>
 
-                </div>
-            </div>
-            <br><br><br><br><br>
-            <hr>
-            <div class="row">
-                <h5>Testing only:</h5>
-                <div class="row">
-                    <textarea style="color:#000000;width:100%;" rows="4"
-                        ng-model="encryptData.m"
-                        placeholder="Enter here the unencrypted..."
-                    ></textarea>
-                </div>
-                <textarea style="backgroud:grey;color:#000000;width:100%;" rows="4"
-                    ng-model="encryptData.c"
-                    placeholder="Encrypted data..."
-                ></textarea>
-                <div ng-click="encrypt()" ng-show="id.blockchainref" class="btn btn-raised pull-right c_o_orange300">
-                    Encrypt
+                    <br><br><br><br><br>
+                    <hr>
+                    <h5>Testing only:</h5>
+                    <div class="row">
+                        <textarea style="color:#000000;width:100%;" rows="4"
+                            ng-model="encryptData.m"
+                            placeholder="Enter here the unencrypted..."
+                        ></textarea>
+                    </div>
+                    <div class="row">
+                        <textarea style="backgroud:grey;color:#000000;width:100%;" rows="4"
+                            ng-model="encryptData.c"
+                            placeholder="Encrypted data..."
+                        ></textarea>
+                    </div>
+                    <div ng-click="encrypt()" ng-show="id.blockchainref" class="btn btn-raised pull-right c_o_orange300">
+                        Encrypt
+                    </div>
                 </div>
             </div>
         </div>

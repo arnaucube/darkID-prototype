@@ -13,7 +13,7 @@ contract DarkID {
     }
 
 
-    IdStruct ID;
+    IdStruct public ID;
 
 
     function DarkID(string _pubK, string _hashed, string _unblindedSig, string _serverVerifier, string _signerID) public {

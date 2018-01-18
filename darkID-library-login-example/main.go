@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/fatih/color"
 	"github.com/gorilla/handlers"
@@ -15,13 +14,15 @@ const keysize = 2048
 const hashize = 1536
 
 func main() {
-	color.Blue("Starting darkID clientApp")
+	color.Blue("Starting darkID-libarary-login-example")
 
 	readConfig("config.json")
 	fmt.Println(config)
 
-	//create models directory
-	_ = os.Mkdir(keysDir, os.ModePerm)
+	/*//create keys directory
+	_ = os.Mkdir(keysDir, os.ModePerm)*/
+
+	initializeToken()
 
 	//run thw webserver
 	go GUI()

@@ -9,11 +9,27 @@ angular.module('app.signup', ['ngRoute'])
   });
 }])
 
-.controller('SignupCtrl', function($scope, $http, $routeParams) {
+.controller('SignupCtrl', function($scope, $http, $routeParams, $rootScope) {
     $scope.user = {};
-    $scope.doSignup = function() {
+    $scope.signup = function() {
       console.log('Doing signup', $scope.user);
+      $http({
+              url: $rootScope.server + 'signup',
+              method: "POST",
+              headers: {
+                  "Content-Type": undefined
+              },
+              data: $scope.user
+          })
+          .then(function(data) {
+                  console.log("data: ");
+                  console.log(data.data);
+                  window.location="/";
 
+              },
+              function(data) {
+                  console.log(data);
+              });
 
     };
 });

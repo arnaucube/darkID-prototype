@@ -49,7 +49,7 @@ angular.module('app.login', ['ngRoute'])
                             window.location.reload();
                         } else {
                             console.log("login failed");
-                            toastr.error('Login failed');
+                            toastr.error('Login failed, ' + data.data);
                         }
 
 

@@ -82,11 +82,21 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	rUser := User{}
 	err = userCollection.Find(bson.M{"email": user.Email}).One(&rUser)
 	if err != nil {
-	} else {
-		//user exists, update with the token
-		err = userCollection.Update(bson.M{"_id": rUser.Id}, user)
+		jResp, err := json.Marshal("error login, email not found")
 		check(err)
+		fmt.Fprintln(w, string(jResp))
+		return
 	}
+	//user exists, check password
+	if user.Password != rUser.Password {
+		jResp, err := json.Marshal("error login, password not match")
+		check(err)
+		fmt.Fprintln(w, string(jResp))
+		return
+	}
+	//update with the token
+	err = userCollection.Update(bson.M{"_id": rUser.Id}, user)
+	check(err)
 
 	jResp, err := json.Marshal(user)
 	if err != nil {
