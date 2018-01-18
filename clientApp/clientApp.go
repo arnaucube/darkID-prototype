@@ -8,6 +8,7 @@ import (
 	"crypto/sha1"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os/exec"
 	"time"
@@ -37,8 +38,16 @@ func NewID() []Key {
 	key.PrivK = id + "private.pem"
 	key.PubK = id + "public.pem"
 
+	time.Sleep(time.Second * 2)
+
+	b, err := ioutil.ReadFile(keysDir + "/" + key.PubK)
+	if err != nil {
+		fmt.Print(err)
+	}
+	key.PublicKey = string(b)
+
 	key.Date = time.Now()
-	fmt.Println(key)
+	fmt.Println(key.PublicKey)
 
 	keys := readKeys()
 	keys = append(keys, key)

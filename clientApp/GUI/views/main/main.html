@@ -26,7 +26,7 @@
                             <div ng-click="clientApp('addtoblockchain', id.id)" ng-show="id.unblindedsig && !id.blockchainref" class="btn btn-raised btn-sm c_o_deepPurple300">
                                 <i title="" class="fa fa-chain"></i> Add to blockchain
                             </div>
-                            <a ng-href="#!/id/{{id.id}}" ng-show="id.blockchainref" class="btn btn-raised btn-sm c_o_green300">
+                            <a ng-href="#!/id/{{id.id}}" ng-show="id.unblindedsig" class="btn btn-raised btn-sm c_o_green300">
                                         Use ID
                                     </a>
                         </div>

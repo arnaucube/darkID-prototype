@@ -19,6 +19,7 @@ type Key struct {
 	ID             string         `json:"id"`
 	PrivK          string         `json:"privK"` //path of the PrivK file
 	PubK           string         `json:"pubK"`  //path of the PubK file
+	PublicKey      string         `json:"publicKey"`
 	Date           time.Time      `json:"date"`
 	Hashed         []byte         `json:"hashed"`
 	UnblindedSig   []byte         `json:"unblindedsig"`

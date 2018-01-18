@@ -7,7 +7,8 @@ import (
 
 //Config reads the config
 type Config struct {
-	Port string `json:"port"`
+	Port          string `json:"port"`
+	WebServerPort string `json:"webserverport"`
 }
 
 var config Config

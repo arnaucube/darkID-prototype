@@ -10,15 +10,15 @@ var routes = Routes{
 		Index,
 	},
 	Route{
-		"Signup",
+		"GetProof",
 		"POST",
-		"/signup",
-		Signup,
+		"/getproof",
+		GetProof,
 	},
 	Route{
-		"Login",
+		"AnswerProof",
 		"POST",
-		"/login",
-		Login,
+		"/answerproof",
+		AnswerProof,
 	},
 }

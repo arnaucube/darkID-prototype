@@ -1,0 +1,11 @@
+{
+  "name": "darkID-library-login-example",
+  "version": "1.0.0",
+  "description": "darkID-library-login-example",
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "http-server"
+  },
+  "license": "MIT"
+}

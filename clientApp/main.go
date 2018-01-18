@@ -40,6 +40,6 @@ func main() {
 func GUI() {
 	//here, run webserver
 	log.Println("webserver in port " + "8080")
-	http.Handle("/", http.FileServer(http.Dir("./web")))
+	http.Handle("/", http.FileServer(http.Dir("./GUI")))
 	http.ListenAndServe(":"+"8080", nil)
 }

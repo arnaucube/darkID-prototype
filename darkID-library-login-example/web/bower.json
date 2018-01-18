@@ -1,0 +1,19 @@
+{
+  "name": "darkID-library-login-example",
+  "description": "",
+  "version": "0.0.0",
+  "homepage": "",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.6.2",
+    "angular-route": "^1.6.1",
+    "angular-messages": "^1.6.5",
+    "angular-bootstrap-material": "abm#^0.1.4",
+    "angular-bootstrap": "^2.5.0",
+    "components-font-awesome": "^4.7.0",
+    "angular-toastr": "^2.1.1",
+    "cssMaterialColors": "*",
+    "angular-chart.js": "^1.1.1"
+  }
+}

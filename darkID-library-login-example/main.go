@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
+	"time"
 
 	"github.com/fatih/color"
 	"github.com/gorilla/handlers"
@@ -19,9 +21,10 @@ func main() {
 	readConfig("config.json")
 	fmt.Println(config)
 
-	/*//create keys directory
-	_ = os.Mkdir(keysDir, os.ModePerm)*/
+	//initialize rand
+	rand.Seed(time.Now().UnixNano())
 
+	//initialize token
 	initializeToken()
 
 	//run thw webserver
@@ -40,7 +43,7 @@ func main() {
 
 func GUI() {
 	//here, run webserver
-	log.Println("webserver in port " + "8080")
+	log.Println("webserver in port " + config.WebServerPort)
 	http.Handle("/", http.FileServer(http.Dir("./web")))
-	http.ListenAndServe(":"+"8080", nil)
+	http.ListenAndServe(":"+config.WebServerPort, nil)
 }

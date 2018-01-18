@@ -7,6 +7,11 @@
             <div class="card">
                 <div class="card-body">
                     <h4>ID: {{id.id}}</h4>
+                    <div class="row">
+                        <textarea disabled style="color:#81C784;width:100%;" rows="4"
+                            ng-model="id.publicKey"
+                        ></textarea>
+                    </div>
 
                     <span class="pull-right">{{id.date | date: "dd.MM.y, HH:mm:ss"}}h</span>
 
@@ -23,7 +28,7 @@
                     </div>
                     <h5 ng-show="decryptData.m">PoD:</h5>
                     {{decryptData.m}}
-                    <div ng-click="decrypt()" ng-show="id.blockchainref" class="btn btn-raised pull-right c_o_pink300">
+                    <div ng-click="decrypt()" ng-show="id.unblindedsig" class="btn btn-raised pull-right c_o_pink300">
                         Proof of decrypt
                     </div>
 
@@ -42,7 +47,7 @@
                             placeholder="Encrypted data..."
                         ></textarea>
                     </div>
-                    <div ng-click="encrypt()" ng-show="id.blockchainref" class="btn btn-raised pull-right c_o_orange300">
+                    <div ng-click="encrypt()" ng-show="id.unblindedsig" class="btn btn-raised pull-right c_o_orange300">
                         Encrypt
                     </div>
                 </div>

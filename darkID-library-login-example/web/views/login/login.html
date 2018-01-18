@@ -1,0 +1,43 @@
+<div class="container" style="margin-top: -60px;">
+    <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        Some platform login example
+                    </h4>
+                    <div class="row">
+                        <textarea style="color:#000000;width:100%;" rows="4"
+                            ng-model="proof.PublicKey"
+                            placeholder="Enter here the publicKey of darkID"
+                        ></textarea>
+                    </div>
+                    <div class="row">
+                        <div ng-click="getproof()" class="btn btn-block btn-raised btn-block c_indigo300 pull-right">Proof of darkID</div>
+                    </div>
+                    <div ng-show="proof.question">
+                        Proof question:
+                        <br>
+                        <div class="row">
+                            <textarea disabled style="color:#81C784;width:100%;" rows="4"
+                                ng-model="proof.question"
+                            ></textarea>
+                        </div>
+                        <input ng-model="proof.answer" class="form-control" placeholder="Proof answer" type="text">
+                        <div class="row">
+                            <div ng-click="sendanswer()" class="btn btn-block btn-raised btn-block c_green300 pull-right">Send answer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</div>
