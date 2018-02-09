@@ -9,8 +9,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-//TODO use rsa library instead own rsa functions
-
 func Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "clientApp")
 }

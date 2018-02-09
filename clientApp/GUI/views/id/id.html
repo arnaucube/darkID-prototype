@@ -7,11 +7,6 @@
             <div class="card">
                 <div class="card-body">
                     <h4>ID: {{id.id}}</h4>
-                    <div class="row">
-                        <textarea disabled style="color:#81C784;width:100%;" rows="4"
-                            ng-model="id.publicKey"
-                        ></textarea>
-                    </div>
 
                     <span class="pull-right">{{id.date | date: "dd.MM.y, HH:mm:ss"}}h</span>
 
@@ -20,6 +15,13 @@
                     <span class="badge c_o_orange300" ng-show="!id.unblindedsig">Not signed</span>
                     <span class="badge c_o_blue300" ng-show="id.unblindedsig">Signed</span>
                     <span class="badge c_o_deepPurple300" ng-show="id.blockchainref">in Blockchain</span>
+                    <br><br>
+                    <div class="row">
+                        <textarea disabled style="color:#81C784;width:100%;" rows="4"
+                            ng-model="id.publicKey"
+                        ></textarea>
+                    </div>
+                    <br>
                     <div class="row">
                         <textarea style="color:#000000;width:100%;" rows="4"
                             ng-model="decryptData.c"
@@ -32,23 +34,25 @@
                         Proof of decrypt
                     </div>
 
-                    <br><br><br><br><br>
-                    <hr>
-                    <h5>Testing only:</h5>
-                    <div class="row">
-                        <textarea style="color:#000000;width:100%;" rows="4"
-                            ng-model="encryptData.m"
-                            placeholder="Enter here the unencrypted..."
-                        ></textarea>
-                    </div>
-                    <div class="row">
-                        <textarea style="backgroud:grey;color:#000000;width:100%;" rows="4"
-                            ng-model="encryptData.c"
-                            placeholder="Encrypted data..."
-                        ></textarea>
-                    </div>
-                    <div ng-click="encrypt()" ng-show="id.unblindedsig" class="btn btn-raised pull-right c_o_orange300">
-                        Encrypt
+                    <div ng-show="testing">
+                        <br><br><br><br><br>
+                        <hr>
+                        <h5>Testing only:</h5>
+                        <div class="row">
+                            <textarea style="color:#000000;width:100%;" rows="4"
+                                ng-model="encryptData.m"
+                                placeholder="Enter here the unencrypted..."
+                            ></textarea>
+                        </div>
+                        <div class="row">
+                            <textarea style="backgroud:grey;color:#000000;width:100%;" rows="4"
+                                ng-model="encryptData.c"
+                                placeholder="Encrypted data..."
+                            ></textarea>
+                        </div>
+                        <div ng-click="encrypt()" ng-show="id.unblindedsig" class="btn btn-raised pull-right c_o_orange300">
+                            Encrypt
+                        </div>
                     </div>
                 </div>
             </div>

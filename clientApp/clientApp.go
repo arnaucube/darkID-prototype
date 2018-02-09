@@ -66,7 +66,6 @@ type SignResponse struct {
 func BlindAndSendToSign(keyID string) []Key {
 	//get the key
 	key := getKeyByKeyID(keyID)
-	//privK := openPEMKey(key.PrivK)
 	pubK, err := openPublicPEMKey(keysDir + "/" + key.PubK)
 	check(err)
 
@@ -87,7 +86,6 @@ func BlindAndSendToSign(keyID string) []Key {
 	defer res.Body.Close()
 
 	//blind the hashed message
-	// We do a SHA256 full-domain-hash expanded to 1536 bits (3/4 the key size)
 	hashed := fdh.Sum(crypto.SHA256, hashize, mB)
 	blinded, unblinder, err := rsablind.Blind(serverPubK, hashed)
 	if err != nil {
@@ -109,7 +107,6 @@ func BlindAndSendToSign(keyID string) []Key {
 	defer res.Body.Close()
 
 	sig := signResponse.Sig
-	//serverPubK := signResponse.PubK
 
 	//unblind the signedblind
 	unblindedSig := rsablind.Unblind(serverPubK, sig, unblinder)

@@ -77,8 +77,8 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     .factory('api', function($http) {
         return {
             init: function() {
-                /*$http.defaults.headers.common['X-Access-Token'] = localStorage.getItem('block_webapp_token');
-                $http.defaults.headers.post['X-Access-Token'] = localStorage.getItem('block_webapp_token');*/
+                /*$http.defaults.headers.common['X-Access-Token'] = localStorage.getItem('darkID_token');
+                $http.defaults.headers.post['X-Access-Token'] = localStorage.getItem('darkID_token');*/
             }
         };
     })

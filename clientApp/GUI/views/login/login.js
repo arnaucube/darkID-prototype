@@ -31,7 +31,6 @@ angular.module('app.login', ['ngRoute'])
 
 
 
-            //
             $http({
                     url: $rootScope.server + 'login',
                     method: "POST",

@@ -17,4 +17,4 @@ echo "$BLINDSIGNED"
 
 echo ""
 echo "send blindsigned to the serverIDsigner to verify"
-curl -X POST http://127.0.0.1:3130/verifysign -d '{"m": "hola", "mSigned": "131898 40373 107552 34687"}'
+curl -X POST http://127.0.0.1:3130/verifysign -d '{"m": "hello", "mSigned": "131898 40373 107552 34687"}'

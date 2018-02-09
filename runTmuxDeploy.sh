@@ -15,4 +15,5 @@ tmux attach
 
 # websites:
 # 127.0.0.1:8080 darkID client
+# or run 'electron .' in the clientApp/GUI directory, to run the desktop app
 # 127.0.0.1:5011 library login example with darkID
